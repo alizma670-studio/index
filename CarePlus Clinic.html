@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarePulse Community Health Clinic</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --slate-900: #0f172a;
+            --slate-800: #1e293b;
+            --slate-600: #475569;
+            --slate-100: #f1f5f9;
+            --slate-50: #f8fafc;
+            
+            --teal-600: #0d9488;
+            --teal-500: #14b8a6;
+            --teal-100: #ccfbf1;
+            --teal-50: #f0fdf4;
+            
+            --emerald-500: #10b981;
+            
+            --bg-glass: rgba(255, 255, 255, 0.85);
+            --border-glass: rgba(255, 255, 255, 0.5);
+            
+            --shadow-sm: 0 2px 4px rgba(15, 23, 42, 0.04);
+            --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 20px 30px -10px rgba(15, 23, 42, 0.12);
+            
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: var(--slate-800);
+            background-color: var(--slate-50);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--teal-100);
+            color: var(--teal-600);
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--slate-900);
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            color: var(--slate-600);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        .navbar {
+            background-color: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--slate-900);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--teal-500), var(--teal-600));
+            color: white;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.25rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--slate-600);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--teal-600);
+        }
+
+        .hero {
+            position: relative;
+            background: radial-gradient(circle at 10% 20%, #e6f4f1 0%, var(--slate-50) 90%);
+            padding: 6rem 0 5rem;
+            overflow: hidden;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--teal-100) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 780px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.25rem;
+            line-height: 1.15;
+            font-weight: 800;
+            color: var(--slate-900);
+            letter-spacing: -0.03em;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--teal-600), var(--emerald-500));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text {
+            font-size: 1.2rem;
+            color: var(--slate-600);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-highlights {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--slate-800);
+            background: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 9999px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+        }
+
+        .highlight-item svg {
+            color: var(--teal-600);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid #e2e8f0;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--teal-500);
+        }
+
+        .service-icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-md);
+            background: var(--teal-50);
+            color: var(--teal-600);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .service-card:hover .service-icon-box {
+            background: var(--teal-600);
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--slate-900);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            color: var(--slate-600);
+            font-size: 0.975rem;
+            line-height: 1.6;
+        }
+
+        .team-section {
+            background-color: #f1f5f9;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .team-header {
+            height: 120px;
+            background: linear-gradient(135deg, var(--slate-900), var(--slate-800));
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .team-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: var(--teal-100);
+            border: 4px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--teal-600);
+            margin-bottom: -45px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .team-body {
+            padding: 3.5rem 1.5rem 2rem;
+            text-align: center;
+        }
+
+        .team-body h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--slate-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .team-role {
+            color: var(--teal-600);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .team-bio {
+            color: var(--slate-600);
+            font-size: 0.9rem;
+        }
+
+        .contact-section {
+            background-color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: var(--slate-50);
+            padding: 3rem 2rem;
+            border-radius: var(--radius-xl);
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            background: white;
+            border-color: var(--teal-500);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .contact-icon-box {
+            width: 64px;
+            height: 64px;
+            background: white;
+            border-radius: 50%;
+            color: var(--teal-600);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover .contact-icon-box {
+            transform: scale(1.1);
+            background: var(--teal-600);
+            color: white;
+        }
+
+        .contact-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--slate-900);
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-detail {
+            font-size: 1.1rem;
+            color: var(--slate-800);
+            font-weight: 600;
+            text-decoration: none;
+            line-height: 1.6;
+            display: block;
+        }
+
+        a.contact-detail {
+            color: var(--teal-600);
+            transition: color 0.2s ease;
+        }
+
+        a.contact-detail:hover {
+            color: var(--slate-900);
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: var(--slate-900);
+            color: #94a3b8;
+            padding: 2.5rem 0;
+            margin-top: auto;
+            border-top: 1px solid var(--slate-800);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-logo {
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.25rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                height: auto;
+                padding: 1.25rem 0;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1.25rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </div>
+                CarePulse Clinic
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#team">Medical Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    Trusted Community Care
+                </span>
+                <h1 class="hero-title">Patient-First Healthcare for Your <span>Whole Family</span></h1>
+                <p class="hero-text">Experience compassionate, high-quality medical expertise in a comfortable and welcoming environment. We are dedicated to your long-term health and wellness.</p>
+                
+                <div class="hero-highlights">
+                    <div class="highlight-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        Board-Certified Doctors
+                    </div>
+                    <div class="highlight-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        Modern Diagnostics
+                    </div>
+                    <div class="highlight-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        Walk-Ins Welcome
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section-padding">
+        <div class="container">
+            <div class="text-center">
+                <span class="badge">Our Expertise</span>
+                <h2 class="section-title">Comprehensive Medical Services</h2>
+                <p class="section-desc">Providing a full range of medical solutions designed to keep you and your family healthy at every stage of life.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                    </div>
+                    <h3>General Primary Care</h3>
+                    <p>Routine wellness examinations, health risk assessments, preventative screenings, and personalized health management.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h3>Pediatrics & Child Care</h3>
+                    <p>Specialized medical care for infants, children, and adolescents, including development tracking and wellness checkups.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v8"></path><path d="M8 12h8"></path></svg>
+                    </div>
+                    <h3>Preventative Screening</h3>
+                    <p>Early identification of health conditions through state-of-the-art preventative lab tests and physical evaluations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="section-padding team-section">
+        <div class="container">
+            <div class="text-center">
+                <span class="badge">Medical Professionals</span>
+                <h2 class="section-title">Meet Our Doctors</h2>
+                <p class="section-desc">Our dedicated team of experienced physicians is committed to providing standard-setting medical care.</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        </div>
+                    </div>
+                    <div class="team-body">
+                        <h3>Dr. Sarah Jenkins, MD</h3>
+                        <div class="team-role">Chief Medical Officer</div>
+                        <p class="team-bio">Board-certified in Internal Medicine with over 15 years of clinical practice experience.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        </div>
+                    </div>
+                    <div class="team-body">
+                        <h3>Dr. Marcus Vance, MD</h3>
+                        <div class="team-role">Pediatric Specialist</div>
+                        <p class="team-bio">Passionate about child health, growth tracking, and preventative family care.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        </div>
+                    </div>
+                    <div class="team-body">
+                        <h3>Dr. Elena Rostova, MD</h3>
+                        <div class="team-role">General Practitioner</div>
+                        <p class="team-bio">Dedicated to primary wellness care, diagnostic evaluations, and preventative health.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding contact-section">
+        <div class="container">
+            <div class="text-center">
+                <span class="badge">Get in Touch</span>
+                <h2 class="section-title">Direct Contact Information</h2>
+                <p class="section-desc">Connect directly with our staff via telephone, email, or visit our clinic facility in person.</p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Telephone -->
+                <div class="contact-card">
+                    <div class="contact-icon-box">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </div>
+                    <h3>Telephone</h3>
+                    <a href="tel:+15550192834" class="contact-detail">(555) 019-2834</a>
+                </div>
+
+                <!-- Email -->
+                <div class="contact-card">
+                    <div class="contact-icon-box">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </div>
+                    <h3>Email Address</h3>
+                    <a href="mailto:contact@carepulseclinic.com" class="contact-detail">contact@carepulseclinic.com</a>
+                </div>
+
+                <!-- Physical Address -->
+                <div class="contact-card">
+                    <div class="contact-icon-box">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <h3>Physical Address</h3>
+                    <p class="contact-detail">123 Healthcare Blvd, Suite 400<br>Medical City, MC 12345</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    CarePulse Clinic
+                </div>
+                <p>&copy; 2026 CarePulse Community Health Clinic. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
